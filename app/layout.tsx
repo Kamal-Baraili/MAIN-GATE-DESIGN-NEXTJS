@@ -5,6 +5,8 @@ import "./styles/index.css";
 import Nav from "./layout/nav";
 import Footer from "./layout/footer";
 import { usePathname } from "next/navigation";
+import { AudioProvider } from "./audioContext";
+import AudioManager from "./audioManager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Nav />
-        {children}
-        {showFooter && <Footer />}
+        <AudioProvider>
+          <AudioManager />
+          <Nav />
+          {children}
+          {showFooter && <Footer />}
+        </AudioProvider>
       </body>
     </html>
   );
